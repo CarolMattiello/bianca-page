@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, Variants } from "framer-motion";
 import { ArrowDown, CheckCircle, Heart, Mail, MapPin, Instagram, Facebook, MessageCircle } from "lucide-react";
 
 /**
@@ -66,27 +66,27 @@ const trainerData = {
 };
 
 // --- ANIMATION VARIANTS ---
-const fadeUp = {
+const fadeUp: Variants = {
     hidden: { opacity: 0, y: 50 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
 };
 
-const bloom = {
+const bloom: Variants = {
     hidden: { opacity: 0, scale: 0.8, filter: "blur(10px)" },
     visible: { opacity: 1, scale: 1, filter: "blur(0px)", transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] } },
 };
 
-const slideLeft = {
+const slideLeft: Variants = {
     hidden: { opacity: 0, x: -70 },
     visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" } },
 };
 
-const slideRight = {
+const slideRight: Variants = {
     hidden: { opacity: 0, x: 70 },
     visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" } },
 };
 
-const staggerContainer = {
+const staggerContainer: Variants = {
     hidden: { opacity: 0 },
     visible: {
         opacity: 1,
