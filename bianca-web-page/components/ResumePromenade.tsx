@@ -2,7 +2,7 @@
 
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowDown, CheckCircle, Heart, Mail, MapPin, Instagram, Facebook } from "lucide-react";
+import { ArrowDown, CheckCircle, Heart, Mail, MapPin, Instagram, Facebook, MessageCircle } from "lucide-react";
 
 /**
  * PROMENADE:
@@ -61,7 +61,7 @@ const trainerData = {
         email: "hello@biancatraining.com",
         location: "São Paulo, SP",
         instagram: "@biancadogtraining",
-        facebook: "/biancadogtraining",
+        whatsapp: "5511999999999" // TODO: Add real WhatsApp number
     }
 };
 
@@ -275,7 +275,7 @@ export default function ResumePromenade() {
             </section>
 
             {/* --- END OF TRAIL / CONTACT --- */}
-            <section className="py-32 px-6 sm:px-12 bg-[#FAFAFB]">
+            <section className="pt-32 pb-6 px-6 sm:px-12 bg-[#FAFAFB]">
                 <motion.div
                     initial="hidden"
                     whileInView="visible"
@@ -292,32 +292,47 @@ export default function ResumePromenade() {
                         Ready to bond, play, and learn? Let’s begin your dog's positive reinforcement journey.
                     </p>
 
-                    <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-20">
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-24">
                         <a href={`mailto:${trainerData.contact.email}`} className="flex items-center gap-3 px-8 py-4 bg-neutral-900 text-white rounded-full hover:bg-neutral-800 transition-colors">
                             <Mail className="w-5 h-5" />
                             <span className="font-medium">Get in Touch</span>
                         </a>
+                        <a href={trainerData.contact.instagram} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 px-8 py-4 bg-white text-neutral-900 border border-neutral-200 rounded-full hover:bg-neutral-50 transition-colors">
+                            <Instagram className="w-5 h-5" />
+                            <span className="font-medium">Instagram</span>
+                        </a>
                     </div>
 
                     {/* Footer Socials */}
-                    <div className="pt-12 border-t border-neutral-200 flex flex-col sm:flex-row items-center justify-between text-neutral-500 text-sm gap-6">
-                        <div className="flex items-center gap-2">
-                            <MapPin className="w-4 h-4" /> {trainerData.contact.location}
-                        </div>
-
-                        <div className="flex gap-6">
-                            <a href={trainerData.contact.instagram} className="flex items-center gap-2 hover:text-neutral-900 transition-colors">
-                                <Instagram className="w-4 h-4" /> Intagram
-                            </a>
-                            <a href={trainerData.contact.facebook} className="flex items-center gap-2 hover:text-neutral-900 transition-colors">
-                                <Facebook className="w-4 h-4" /> Facebook
-                            </a>
-                        </div>
-
-                        <div>&copy; {new Date().getFullYear()} {trainerData.name}. All rights reserved.</div>
+                    <div className="pt-8 border-t border-neutral-200/60 flex flex-col items-center justify-center text-neutral-400 text-xs gap-3">
+                        <div className="font-light tracking-wide">&copy; {new Date().getFullYear()} {trainerData.name}. All rights reserved.</div>
+                        <a href="mailto:carol.smattiello@gmail.com" className="flex items-center gap-2 hover:text-neutral-600 transition-colors mt-2">
+                            <Mail className="w-3 h-3" /> Website Development
+                        </a>
                     </div>
                 </motion.div>
             </section>
+
+            {/* --- FIXED WHATSAPP ICON --- */}
+            <motion.div
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: 1.5, duration: 0.5, type: "spring" }}
+                className="fixed bottom-6 right-6 z-50 group"
+            >
+                {/* Ambient glow effect that pulses softly */}
+                <div className="absolute inset-0 bg-green-400 rounded-full blur-lg opacity-40 animate-pulse group-hover:opacity-70 group-hover:scale-110 transition-all duration-300"></div>
+
+                <a
+                    href={`https://wa.me/${trainerData.contact.whatsapp}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="relative flex items-center justify-center p-4 bg-white text-neutral-800 border border-neutral-100 shadow-[0_8px_30px_rgb(0,0,0,0.08)] rounded-full hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300"
+                    aria-label="Contact on WhatsApp"
+                >
+                    <MessageCircle className="w-6 h-6 text-neutral-400 group-hover:text-green-500 transition-colors duration-300" />
+                </a>
+            </motion.div>
 
         </div>
     );
